@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: At the Airport — Travel English</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        header p { color: #666; font-size: 1.1em; }
+
+        .lesson-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-info span {
+            background: #f0f3ff;
+            color: #1a2980;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+        .tab.active { background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%); color: white; }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: none;
+        }
+
+        .section.active { display: block; animation: slideIn 0.4s ease; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .section-icon { font-size: 2em; }
+        .section-title { color: #1a2980; flex: 1; }
+        .section-time { background: #e8f4fd; color: #1a2980; padding: 8px 16px; border-radius: 20px; font-weight: 600; }
+
+        .instruction {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-left: 4px solid #26d0ce;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .question-box { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #1a2980; }
+        .question-box p { margin-bottom: 10px; font-size: 1.05em; }
+
+        .example-answer {
+            background: #e8f4fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95em;
+        }
+
+        .example-answer strong { color: #1a2980; }
+
+        .grammar-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .grammar-box h3 { color: #1a2980; margin-bottom: 15px; }
+        .grammar-box .example {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 4px solid #26d0ce;
+        }
+        .grammar-box .example strong { color: #1a2980; }
+
+        .keyword {
+            display: inline-block;
+            background: #26d0ce;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+
+        .grammar-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .grammar-table th, .grammar-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+        .grammar-table th { background: #1a2980; color: white; }
+        .grammar-table tr:nth-child(even) { background: #f8f9fa; }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vocab-card {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .vocab-card h5 { color: #1a2980; margin-bottom: 5px; font-size: 1.1em; }
+        .vocab-card p { color: #666; font-size: 0.9em; }
+        .vocab-card .transcription { color: #26d0ce; font-size: 0.85em; font-style: italic; }
+
+        .options { display: flex; flex-wrap: wrap; gap: 10px; }
+        .option-btn {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+        .option-btn:hover { border-color: #26d0ce; background: #f0f3ff; }
+        .option-btn.selected { border-color: #1a2980; background: #1a2980; color: white; }
+        .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+        .option-btn.incorrect { border-color: #e74c3c; background: #f8d7da; color: #721c24; }
+
+        .text-answer {
+            border: 2px solid #ddd;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 400px;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+        .text-answer:focus { outline: none; border-color: #1a2980; }
+
+        .btn {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(26, 41, 128, 0.4); }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback.show { display: block; animation: slideIn 0.3s ease; }
+        .feedback.correct { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .feedback.incorrect { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .feedback.info { background: #e8f4fd; border: 1px solid #bee5eb; color: #0c5460; }
+
+        .announcement-box {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 2;
+        }
+
+        .announcement-box .label {
+            color: #00b894;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .announcement-box p { margin: 10px 0; }
+
+        .audio-play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #1a2980;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+        .audio-play-btn:hover { background: #2a3a90; }
+
+        .roleplay-box {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f3ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .roleplay-box h4 { color: #1a2980; margin-bottom: 15px; }
+
+        .dialogue-line {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+        .dialogue-agent { background: #e8f4fd; border-left: 4px solid #1a2980; }
+        .dialogue-passenger { background: #d4edda; border-left: 4px solid #27ae60; }
+        .dialogue-line .role { font-weight: bold; color: #1a2980; margin-right: 10px; }
+        .dialogue-line .translation { color: #888; font-style: italic; font-size: 0.85em; }
+
+        .homework-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+        .homework-box h4 { color: #155724; margin-bottom: 15px; }
+
+        .homework-item {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .homework-item input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; }
+        .homework-item strong { color: #155724; }
+
+        .tips-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .tips-box h4 { color: #856404; margin-bottom: 15px; }
+        .tips-box li { margin: 8px 0; color: #856404; }
+
+        .video-suggestion {
+            background: #f8f9fa;
+            border: 2px dashed #1a2980;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .video-suggestion h4 { color: #1a2980; margin-bottom: 10px; }
+        .video-suggestion p { color: #666; margin: 5px 0; }
+
+        footer { text-align: center; padding: 30px; color: white; }
+
+        /* Matching Game Styles */
+        .game-area {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 60px;
+            margin: 25px 0;
+        }
+
+        .game-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 260px;
+        }
+
+        .game-column-title {
+            text-align: center;
+            font-weight: 600;
+            color: #1a2980;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .match-card {
+            padding: 15px 20px;
+            border-radius: 12px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.05em;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .match-card:hover {
+            border-color: #26d0ce;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(38, 208, 206, 0.3);
+        }
+
+        .match-card.selected {
+            border-color: #1a2980;
+            background: #1a2980;
+            color: white;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 41, 128, 0.4);
+        }
+
+        .match-card.matched {
+            border-color: #27ae60;
+            background: #d4edda;
+            color: #155724;
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .match-card.error {
+            border-color: #e74c3c;
+            background: #f8d7da;
+            color: #721c24;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .game-hint {
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .game-results {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .game-results .btn {
+            display: inline-block;
+        }
+
+        .game-score {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1a2980;
+            margin: 10px 0;
+        }
+
+        .game-emoji {
+            font-size: 2.5em;
+            margin: 10px 0;
+        }
+
+        .timer {
+            text-align: center;
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .timer strong { color: #1a2980; }
+
+        .sentence-answer {
+            min-height: 46px;
+            border: 2px dashed #b8c4d6;
+            border-radius: 12px;
+            padding: 8px;
+            margin: 10px 0;
+            background: #f0f3ff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            cursor: pointer;
+        }
+        .sentence-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .word-chip {
+            background: #1a2980;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .word-chip:hover { transform: translateY(-2px); }
+        .sentence-answer .word-chip { background: #26d0ce; font-weight: 600; }
+        .sentence-answer .word-chip:hover { background: #118f8d; transform: scale(0.97); }
+        .sentence-punct { font-weight: 700; font-size: 1.25em; color: #1a2980; }
+        .solution-text { font-size: 1.05em; font-weight: 600; color: #e74c3c; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .section { padding: 25px; }
+            .section-header { flex-wrap: wrap; }
+            .section-time { margin-left: 0; }
+            .options { flex-direction: column; }
+            .option-btn { width: 100%; }
+            .text-answer { max-width: 100%; }
+            .game-area { gap: 20px; flex-direction: column; align-items: center; }
+            .game-column { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛫 Lesson 1: Arriving at the Airport</h1>
+            <p>Travel English — Present Simple + can/can't</p>
+            <div class="lesson-info">
+                <span>⏱ 40 minutes</span>
+                <span>🎯 Level A2</span>
+                <span>👤 Adult Learner</span>
+                <span>🗺️ Travel English</span>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="warmup">🔥 Warm-up</button>
+            <button class="tab" data-tab="vocab">📖 Vocabulary</button>
+            <button class="tab" data-tab="grammar">📚 Grammar</button>
+            <button class="tab" data-tab="listening">🎧 Listening</button>
+            <button class="tab" data-tab="speaking">💬 Speaking</button>
+            <button class="tab" data-tab="passport">🛂 Passport Control</button>
+            <button class="tab" data-tab="game">🎮 Match Game</button>
+            <button class="tab" data-tab="homework">📝 Homework</button>
+        </div>
+
+        <!-- WARM-UP -->
+        <div class="section active" id="warmup">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <h2 class="section-title">Warm-up: Let's Talk About Travel</h2>
+                <span class="section-time">⏱ 5 min</span>
+            </div>
+
+            <div class="instruction">
+                Answer the questions. Take your time — the teacher will help you build full sentences.
+            </div>
+
+            <div class="question-box">
+                <p>1️⃣ When was your last trip? Where did you go?</p>
+                <p>2️⃣ Do you travel often? How many times a year?</p>
+                <p>3️⃣ What do you do at the airport before your flight?</p>
+                <p>4️⃣ Do you like window or aisle seats? Why?</p>
+                <p>5️⃣ Do you prefer morning or evening flights?</p>
+            </div>
+
+            <h3 style="color: #1a2980; margin-bottom: 15px;">💡 Model Answers</h3>
+            <div class="example-answer"><strong>When was your last trip?</strong> — "My last trip was to Singapore. It was last month."</div>
+            <div class="example-answer"><strong>How often do you travel?</strong> — "I travel about 10 times a year for business and vacation."</div>
+            <div class="example-answer"><strong>What do you do at the airport?</strong> — "I check-in, go through security, and wait at the gate."</div>
+            <div class="example-answer"><strong>Window or aisle?</strong> — "I prefer a window seat because I like looking at the sky."</div>
+        </div>
+
+        <!-- VOCABULARY -->
+        <div class="section" id="vocab">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h2 class="section-title">Vocabulary: At the Airport</h2>
+                <span class="section-time">⏱ 8 min</span>
+            </div>
+
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <h5>boarding pass</h5>
+                    <p class="transcription">/ˈbɔːrdɪŋ pɑːs/</p>
+                    <p><strong>Посадочный талон</strong> — paper or app with your seat and gate number</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>check-in desk</h5>
+                    <p class="transcription">/ˈtʃekɪn desk/</p>
+                    <p><strong>Стойка регистрации</strong> — where you register for your flight</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>gate</h5>
+                    <p class="transcription">/ɡeɪt/</p>
+                    <p><strong>Выход на посадку</strong> — where you board the plane (Gate A-12)</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>boarding time</h5>
+                    <p class="transcription">/ˈbɔːrdɪŋ taɪm/</p>
+                    <p><strong>Время посадки</strong> — when passengers start getting on the plane</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>departure</h5>
+                    <p class="transcription">/dɪˈpɑːrtʃər/</p>
+                    <p><strong>Вылет</strong> — when the plane leaves</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>arrival</h5>
+                    <p class="transcription">/əˈraɪvəl/</p>
+                    <p><strong>Прилёт</strong> — when the plane arrives</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>carry-on bag</h5>
+                    <p class="transcription">/ˈkæri ɒn bæɡ/</p>
+                    <p><strong>Ручная кладь</strong> — small bag you take on the plane</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>security check</h5>
+                    <p class="transcription">/sɪˈkjʊərɪti tʃek/</p>
+                    <p><strong>Контроль безопасности</strong> — where they check your bags</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>luggage / baggage</h5>
+                    <p class="transcription">/ˈlʌɡɪdʒ/ /ˈbæɡɪdʒ/</p>
+                    <p><strong>Багаж</strong> — bags that go in the plane's hold</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>passport</h5>
+                    <p class="transcription">/ˈpɑːspɔːrt/</p>
+                    <p><strong>Паспорт</strong> — travel document</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>flight</h5>
+                    <p class="transcription">/flaɪt/</p>
+                    <p><strong>Рейс</strong> — the trip on the plane (Flight JL 451)</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>delay</h5>
+                    <p class="transcription">/dɪˈleɪ/</p>
+                    <p><strong>Задержка</strong> — when the flight is late</p>
+                </div>
+            </div>
+
+            <div class="homework-box" style="background: #e8f4fd;">
+                <h4>🎯 Practice Exercise</h4>
+                <p>Match the word with its meaning:</p>
+                <div style="color: #555; margin: 15px 0; line-height: 2;">
+                    1. delay — <select class="answer-select" data-correct="задержка">
+                        <option value="">...</option>
+                        <option value="задержка">задержка</option>
+                        <option value="выход">выход</option>
+                        <option value="багаж">багаж</option>
+                    </select><br>
+                    2. gate — <select class="answer-select" data-correct="выход">
+                        <option value="">...</option>
+                        <option value="задержка">задержка</option>
+                        <option value="выход">выход</option>
+                        <option value="багаж">багаж</option>
+                    </select><br>
+                    3. carry-on bag — <select class="answer-select" data-correct="ручная кладь">
+                        <option value="">...</option>
+                        <option value="ручная кладь">ручная кладь</option>
+                        <option value="посадочный талон">посадочный талон</option>
+                        <option value="паспорт">паспорт</option>
+                    </select><br>
+                    4. boarding pass — <select class="answer-select" data-correct="посадочный талон">
+                        <option value="">...</option>
+                        <option value="ручная кладь">ручная кладь</option>
+                        <option value="посадочный талон">посадочный талон</option>
+                        <option value="паспорт">паспорт</option>
+                    </select><br>
+                </div>
+                <button class="btn" onclick="checkVocabMatch()">Check</button>
+                <div class="feedback" id="vocab-feedback"></div>
+            </div>
+        </div>
+
+        <!-- GRAMMAR -->
+        <div class="section" id="grammar">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <h2 class="section-title">Grammar: Present Simple + can/can't</h2>
+                <span class="section-time">⏱ 12 min</span>
+            </div>
+
+            <div class="grammar-box">
+                <h3>Present Simple — Констатация фактов и расписания</h3>
+                <p>Используем для:</p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li><strong>Фактов:</strong> "The plane lands at 2 PM."</li>
+                    <li><strong>Расписания:</strong> "The flight departs at 9 AM."</li>
+                    <li><strong>Привычек:</strong> "I always check-in online."</li>
+                </ul>
+                <div class="example">I <strong>fly</strong> to Bangkok every month.</div>
+                <div class="example">The plane <strong>takes off</strong> at 10 AM.</div>
+                <div class="example">The flight <strong>doesn't leave</strong> until 12 PM.</div>
+                <div class="example"><strong>Does</strong> the airport <strong>have</strong> free Wi-Fi?</div>
+            </div>
+
+            <div class="grammar-box">
+                <h3>can / can't — Разрешения и запреты</h3>
+                <div class="example"><strong>We can board</strong> the plane now. — Мы можем подняться на борт.</div>
+                <div class="example"><strong>You can't smoke</strong> here. — Нельзя курить здесь.</div>
+                <div class="example"><strong>Can I take</strong> this bag on the plane? — Можно взять сумку?</div>
+                <div class="example"><strong>She can check-in</strong> online. — Она может зарегистрироваться онлайн.</div>
+            </div>
+
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>Present Simple</th>
+                        <th>can / can't</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Факты, расписание, привычки</td><td>Разрешение ("can I...?")</td></tr>
+                    <tr><td>I fly / He flies (+s/es)</td><td>can + verb / can't + verb</td></tr>
+                    <tr><td>Does it...? / It doesn't...</td><td>Can I...? — вопрос</td></tr>
+                </tbody>
+            </table>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">✏️ Exercise 1: Choose can or can't</h4>
+                <div class="question-box">
+                    <p>1. You <span class="blank">________</span> check your bags here. — Можете</p>
+                    <div class="options">
+                        <button class="option-btn" data-answer="can">can</button>
+                        <button class="option-btn" data-answer="cant">can't</button>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <p>2. Passengers <span class="blank">________</span> smoke on the plane. — Нельзя</p>
+                    <div class="options">
+                        <button class="option-btn" data-answer="can">can</button>
+                        <button class="option-btn" data-answer="cant">can't</button>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <p>3. <span class="blank">________</span> I see your passport, please? — Можно?</p>
+                    <div class="options">
+                        <button class="option-btn" data-answer="Can">Can</button>
+                        <button class="option-btn" data-answer="Can't">Can't</button>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <p>4. You <span class="blank">________</span> carry liquids more than 100 ml. — Нельзя</p>
+                    <div class="options">
+                        <button class="option-btn" data-answer="can">can</button>
+                        <button class="option-btn" data-answer="cant">can't</button>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <p>5. <span class="blank">________</span> we use our phones during the flight? — Можно?</p>
+                    <div class="options">
+                        <button class="option-btn" data-answer="Can">Can</button>
+                        <button class="option-btn" data-answer="Can't">Can't</button>
+                    </div>
+                </div>
+                <button class="btn" onclick="checkCan()">Check Answers</button>
+                <div class="feedback" id="can-feedback"></div>
+            </div>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">✏️ Exercise 2: Translate into English</h4>
+                <div class="question-box">
+                    <p>1. "Рейс задерживается на час" → The flight has a one-hour <input type="text" class="text-answer" data-correct="delay" placeholder="word" style="max-width: 120px;">.</p>
+                </div>
+                <div class="question-box">
+                    <p>2. "Я могу сесть у окна?" → <input type="text" class="text-answer" data-correct="Can I have a window seat" placeholder="Type full sentence" style="max-width: 300px;">?</p>
+                </div>
+                <div class="question-box">
+                    <p>3. "Посадка начинается в 10." → <input type="text" class="text-answer" data-correct="Boarding starts at 10" placeholder="Type full sentence" style="max-width: 300px;">.</p>
+                </div>
+                <div class="question-box">
+                    <p>4. "Нельзя проносить багаж больше 10 кг." → <input type="text" class="text-answer" data-correct="You can't take luggage over 10 kg" placeholder="Type full sentence" style="max-width: 300px;">.</p>
+                </div>
+                <div class="question-box">
+                    <p>5. "Пройдите к выходу A-4." → <input type="text" class="text-answer" data-correct="Please proceed to gate A-4" placeholder="Type full sentence" style="max-width: 300px;">.</p>
+                </div>
+                <button class="btn" onclick="checkTranslate()">Check Answers</button>
+                <div class="feedback" id="translate-feedback"></div>
+            </div>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">🧩 Exercise 3: Build the Sentences</h4>
+                <p style="color: #555; margin-bottom: 15px;">Tap the words in the correct order to make a sentence. Tap a word in the line to put it back.</p>
+
+                <div class="question-box">
+                    <p>1. «Рейс вылетает в 9 утра.»</p>
+                    <div class="sentence-answer" data-correct="the flight departs at 9 am" data-punct="."></div>
+                    <div class="sentence-bank">
+                        <button type="button" class="word-chip">at</button>
+                        <button type="button" class="word-chip">The</button>
+                        <button type="button" class="word-chip">AM</button>
+                        <button type="button" class="word-chip">departs</button>
+                        <button type="button" class="word-chip">flight</button>
+                        <button type="button" class="word-chip">9</button>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <p>2. «Курить в терминале нельзя.»</p>
+                    <div class="sentence-answer" data-correct="you can't smoke in the terminal" data-punct="."></div>
+                    <div class="sentence-bank">
+                        <button type="button" class="word-chip">in</button>
+                        <button type="button" class="word-chip">can't</button>
+                        <button type="button" class="word-chip">terminal</button>
+                        <button type="button" class="word-chip">smoke</button>
+                        <button type="button" class="word-chip">the</button>
+                        <button type="button" class="word-chip">You</button>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <p>3. «Можно мне место у окна?»</p>
+                    <div class="sentence-answer" data-correct="can i have a window seat" data-punct="?"></div>
+                    <div class="sentence-bank">
+                        <button type="button" class="word-chip">have</button>
+                        <button type="button" class="word-chip">window</button>
+                        <button type="button" class="word-chip">Can</button>
+                        <button type="button" class="word-chip">seat</button>
+                        <button type="button" class="word-chip">I</button>
+                        <button type="button" class="word-chip">a</button>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <p>4. «Пассажиры могут зарегистрироваться онлайн.»</p>
+                    <div class="sentence-answer" data-correct="passengers can check in online" data-punct="."></div>
+                    <div class="sentence-bank">
+                        <button type="button" class="word-chip">in</button>
+                        <button type="button" class="word-chip">check</button>
+                        <button type="button" class="word-chip">Passengers</button>
+                        <button type="button" class="word-chip">can</button>
+                        <button type="button" class="word-chip">online</button>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <p>5. «Посадка начинается за 30 минут до вылета.»</p>
+                    <div class="sentence-answer" data-correct="boarding starts thirty minutes before the flight" data-punct="."></div>
+                    <div class="sentence-bank">
+                        <button type="button" class="word-chip">minutes</button>
+                        <button type="button" class="word-chip">before</button>
+                        <button type="button" class="word-chip">Boarding</button>
+                        <button type="button" class="word-chip">starts</button>
+                        <button type="button" class="word-chip">flight</button>
+                        <button type="button" class="word-chip">the</button>
+                        <button type="button" class="word-chip">thirty</button>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="checkBuild()">Check Answers</button>
+                <div class="feedback" id="build-feedback"></div>
+            </div>
+        </div>
+
+        <!-- LISTENING -->
+        <div class="section" id="listening">
+            <div class="section-header">
+                <span class="section-icon">🎧</span>
+                <h2 class="section-title">Listening: Airport Announcements</h2>
+                <span class="section-time">⏱ 8 min</span>
+            </div>
+
+            <div class="instruction">
+                Listen to the announcements. First time — try to understand the main idea. Second time — listen for details.
+            </div>
+
+            <h3 style="color: #1a2980; margin: 20px 0 15px;">🔑 Key Phrases to Know First</h3>
+            <div class="grammar-box">
+                <div class="example"><strong>Passengers of flight...</strong> — Пассажиры рейса...</div>
+                <div class="example"><strong>is now boarding</strong> — начинается посадка</div>
+                <div class="example"><strong>Please proceed to gate</strong> — пройдите к выходу</div>
+                <div class="example"><strong>The flight has been delayed</strong> — рейс задерживается</div>
+                <div class="example"><strong>Final call</strong> — последний призыв</div>
+                <div class="example"><strong>We apologize for the inconvenience</strong> — приносим извинения за неудобства</div>
+            </div>
+
+            <button class="audio-play-btn" onclick="playAnnouncement()">🔊 Play All Announcements</button>
+
+            <div class="announcement-box">
+                <span class="label">📢 Announcement 1 — Boarding</span>
+                <p>"Good afternoon, passengers of flight JL 451 to Tokyo.</p>
+                <p>Boarding will begin in fifteen minutes.</p>
+                <p>Please proceed to gate A-12.</p>
+                <p>Please have your boarding pass and passport ready."</p>
+            </div>
+
+            <div class="announcement-box">
+                <span class="label">📢 Announcement 2 — Delay</span>
+                <p>"Attention, passengers of flight JL 451 to Tokyo.</p>
+                <p>The flight has been delayed.</p>
+                <p>The new departure time is 3:30 PM.</p>
+                <p>We apologize for the inconvenience.</p>
+                <p>Please stay near gate A-12."</p>
+            </div>
+
+            <div class="announcement-box">
+                <span class="label">📢 Announcement 3 — Final Call</span>
+                <p>"Final call for flight JL 451 to Tokyo.</p>
+                <p>Passengers, final boarding call.</p>
+                <p>Please go to gate A-12 immediately.</p>
+                <p>The gate will close in five minutes."</p>
+            </div>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">❓ Comprehension Questions</h4>
+                <div class="question-box">
+                    <p>1. What is the flight number?</p>
+                    <input type="text" class="text-answer" data-correct="JL 451" placeholder="Type your answer...">
+                </div>
+                <div class="question-box">
+                    <p>2. Where is the gate?</p>
+                    <input type="text" class="text-answer" data-correct="A-12" placeholder="Type your answer...">
+                </div>
+                <div class="question-box">
+                    <p>3. What should passengers have ready?</p>
+                    <input type="text" class="text-answer" data-correct="boarding pass and passport" placeholder="Type your answer...">
+                </div>
+                <div class="question-box">
+                    <p>4. Why was the flight delayed?</p>
+                    <input type="text" class="text-answer" data-correct="not mentioned in the announcement" placeholder="Type your answer...">
+                    <div class="hint" style="color: #888; font-size: 0.9em;">Listen carefully — was the reason mentioned?</div>
+                </div>
+                <div class="question-box">
+                    <p>5. What is the new departure time?</p>
+                    <input type="text" class="text-answer" data-correct="3:30 PM" placeholder="Type your answer...">
+                </div>
+                <div class="question-box">
+                    <p>6. What does "final call" mean?</p>
+                    <input type="text" class="text-answer" data-correct="last time to board" placeholder="Type your answer...">
+                </div>
+                <button class="btn" onclick="checkComprehension()">Check Answers</button>
+                <div class="feedback" id="comprehension-feedback"></div>
+            </div>
+
+            <div class="video-suggestion">
+                <h4>🎬 Watch at Home (YouTube)</h4>
+                <p>Search: <strong>"airport vocabulary English"</strong> or <strong>"Jennifer ESL travel English at the airport"</strong></p>
+                <p>Watch one video (5-10 min) and write down 3 new words you hear.</p>
+                <p style="color: #1a2980; font-weight: 500;">📌 Suggested: "Airport English — Check-In" by Rachel's English</p>
+            </div>
+        </div>
+
+        <!-- SPEAKING -->
+        <div class="section" id="speaking">
+            <div class="section-header">
+                <span class="section-icon">💬</span>
+                <h2 class="section-title">Speaking: Check-in Role-Play</h2>
+                <span class="section-time">⏱ 10 min</span>
+            </div>
+
+            <div class="instruction">
+                You arrive at the airport 2 hours before your flight. Practice this dialogue. Then switch roles!
+            </div>
+
+            <div class="roleplay-box">
+                <h4>✈️ Dialogue: At the Check-in Desk</h4>
+
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Good morning! Your passport, please.
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Here you are. <span class="translation">(Вот мой паспорт)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Do you have any checked luggage? <span class="translation">(Сдаёте ли багаж)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Yes, one bag. <span class="translation">(Да, одна сумка)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Is it under 23 kg? <span class="translation">(Вес до 23 кг?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> I think so. <span class="translation">(Думаю, да)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Would you like a window or an aisle seat? <span class="translation">(Место у окна или у прохода?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Window seat, please. <span class="translation">(У окна, пожалуйста)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Here is your boarding pass. Boarding starts at 9:45 at gate C-5. <span class="translation">(Ваш посадочный талон. Посадка начинается в 9:45 у выхода C-5.)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Can I take my carry-on bag with me? <span class="translation">(Можно ручную кладь с собой?)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">👨‍✈️ Agent:</span> Yes, of course. Have a nice flight! <span class="translation">(Да, конечно. Приятного полёта!)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Thank you very much! <span class="translation">(Спасибо большое!)</span>
+                </div>
+            </div>
+
+            <div class="homework-box" style="background: #e8f4fd;">
+                <h4 style="color: #1a2980;">🎯 Variations — Try These Situations Too</h4>
+                <div class="question-box">
+                    <p><strong>Situation 1:</strong> Your flight is delayed. Ask the agent questions:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>"What is the new boarding time?"</li>
+                        <li>"How long is the delay?"</li>
+                        <li>"Can I change my seat?"</li>
+                    </ul>
+                </div>
+                <div class="question-box">
+                    <p><strong>Situation 2:</strong> Your carry-on bag is too heavy. You need to check it:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>"Is my bag too heavy?"</li>
+                        <li>"Can I check it instead?"</li>
+                        <li>"How much does it cost?"</li>
+                    </ul>
+                </div>
+                <div class="question-box">
+                    <p><strong>Situation 3:</strong> You arrive late. The final call is announced:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>"Is boarding still open?"</li>
+                        <li>"Which gate is it?"</li>
+                        <li>"Can I go first, please?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Speaking Tips for a Traveler</h4>
+                <ul>
+                    <li>Don't worry about mistakes — airports are high-stress places, people are understanding!</li>
+                    <li>Always have "Excuse me, could you help me?" ready</li>
+                    <li>If you don't understand: "Sorry, could you repeat that, please?"</li>
+                    <li>Numbers are important — practice saying gates, times, and weights</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PASSPORT CONTROL -->
+        <div class="section" id="passport">
+            <div class="section-header">
+                <span class="section-icon">🛂</span>
+                <h2 class="section-title">Passport Control: Arrival</h2>
+                <span class="section-time">⏱ 10 min</span>
+            </div>
+
+            <div class="instruction">
+                After the flight, you go through passport control. The officer asks simple questions — you just answer them. Practice the questions and answers below.
+            </div>
+
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <h5>passport</h5>
+                    <p class="transcription">/ˈpɑːspɔːrt/</p>
+                    <p><strong>Паспорт</strong> — travel document</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>immigration officer</h5>
+                    <p class="transcription">/ˌɪmɪˈɡreɪʃən ˈɒfɪsər/</p>
+                    <p><strong>Сотрудник паспортного контроля</strong> — the officer who checks your passport</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>purpose of visit</h5>
+                    <p class="transcription">/ˈpɜːrpəs əv ˈvɪzɪt/</p>
+                    <p><strong>Цель визита</strong> — why you came (business or tourism)</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>business trip</h5>
+                    <p class="transcription">/ˈbɪznəs trɪp/</p>
+                    <p><strong>Командировка</strong> — a trip for work</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>tourist</h5>
+                    <p class="transcription">/ˈtʊərɪst/</p>
+                    <p><strong>Турист</strong> — a person travelling for holidays</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>visa</h5>
+                    <p class="transcription">/ˈviːzə/</p>
+                    <p><strong>Виза</strong> — official permission to enter a country</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>customs</h5>
+                    <p class="transcription">/ˈkʌstəmz/</p>
+                    <p><strong>Таможня</strong> — where they check what you bring into the country</p>
+                </div>
+                <div class="vocab-card">
+                    <h5>first time</h5>
+                    <p class="transcription">/fɜːrst taɪm/</p>
+                    <p><strong>Впервые</strong> — "Is this your first time in Bali?"</p>
+                </div>
+            </div>
+
+            <div class="grammar-box">
+                <h3>🔑 Questions the Officer Asks</h3>
+                <div class="example"><strong>Your passport, please.</strong> — Пожалуйста, ваш паспорт.</div>
+                <div class="example"><strong>What is the purpose of your visit?</strong> — Какова цель вашего визита?</div>
+                <div class="example"><strong>Business or tourism?</strong> — По делам или туризм?</div>
+                <div class="example"><strong>How long are you staying?</strong> — Как долго вы останетесь?</div>
+                <div class="example"><strong>Where are you staying?</strong> — Где вы остановитесь?</div>
+                <div class="example"><strong>Is this your first time in Bali?</strong> — Вы впервые на Бали?</div>
+            </div>
+
+            <div class="grammar-box">
+                <h3>💬 How to Answer</h3>
+                <div class="example"><strong>I'm here on business.</strong> — Я здесь по делам.</div>
+                <div class="example"><strong>I'm here on holiday.</strong> — Я здесь в отпуске.</div>
+                <div class="example"><strong>For two weeks.</strong> — На две недели.</div>
+                <div class="example"><strong>At a hotel in Denpasar.</strong> — В отеле в Денпасаре.</div>
+                <div class="example"><strong>No, it's my third time.</strong> — Нет, третий раз.</div>
+            </div>
+
+            <div class="roleplay-box">
+                <h4>🛂 Dialogue: At Passport Control</h4>
+
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> Good morning. Welcome to Bali! Your passport, please. <span class="translation">(Доброе утро. Добро пожаловать на Бали! Ваш паспорт, пожалуйста.)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Here you are. <span class="translation">(Вот он.)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> What is the purpose of your visit? <span class="translation">(Какова цель вашего визита?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> I'm here on business. I sell swimming pools. <span class="translation">(Я здесь по делам. Я продаю бассейны.)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> Nice! How long are you staying? <span class="translation">(Отлично! Как долго вы останетесь?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> For ten days. <span class="translation">(На десять дней.)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> And where are you staying? <span class="translation">(А где вы остановитесь?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> At a hotel in Denpasar, near the beach. <span class="translation">(В отеле в Денпасаре, недалеко от пляжа.)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> Is this your first time in Bali? <span class="translation">(Вы впервые на Бали?)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> No, it's my third time. I love it here. <span class="translation">(Нет, третий раз. Мне здесь очень нравится.)</span>
+                </div>
+                <div class="dialogue-line dialogue-agent">
+                    <span class="role">🛂 Officer:</span> Have a nice stay! Here is your passport. <span class="translation">(Приятного пребывания! Вот ваш паспорт.)</span>
+                </div>
+                <div class="dialogue-line dialogue-passenger">
+                    <span class="role">🧑 Passenger:</span> Thank you very much! <span class="translation">(Огромное спасибо!)</span>
+                </div>
+            </div>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">✏️ Exercise 1: Choose the right answer</h4>
+                <div class="question-box passport-q" data-correct="I'm here on business.">
+                    <p>1. "What is the purpose of your visit?"</p>
+                    <div class="options">
+                        <button class="option-btn">I'm here on business.</button>
+                        <button class="option-btn">For two weeks.</button>
+                        <button class="option-btn">At a hotel in Denpasar.</button>
+                    </div>
+                </div>
+                <div class="question-box passport-q" data-correct="For ten days.">
+                    <p>2. "How long are you staying?"</p>
+                    <div class="options">
+                        <button class="option-btn">At a hotel in Denpasar.</button>
+                        <button class="option-btn">For ten days.</button>
+                        <button class="option-btn">I'm a tourist.</button>
+                    </div>
+                </div>
+                <div class="question-box passport-q" data-correct="At a hotel in Denpasar.">
+                    <p>3. "Where are you staying?"</p>
+                    <div class="options">
+                        <button class="option-btn">For two weeks.</button>
+                        <button class="option-btn">No, third time.</button>
+                        <button class="option-btn">At a hotel in Denpasar.</button>
+                    </div>
+                </div>
+                <div class="question-box passport-q" data-correct="No, it's my third time.">
+                    <p>4. "Is this your first time in Bali?"</p>
+                    <div class="options">
+                        <button class="option-btn">Yes, it's my third time.</button>
+                        <button class="option-btn">No, it's my third time.</button>
+                        <button class="option-btn">No, this is my passport.</button>
+                    </div>
+                </div>
+                <button class="btn" onclick="checkPassport()">Check Answers</button>
+                <div class="feedback" id="passport-feedback"></div>
+            </div>
+
+            <div class="homework-box" style="background: #e8f4fd;">
+                <h4 style="color: #1a2980;">✏️ Exercise 2: Match the word</h4>
+                <div style="color: #555; margin: 15px 0; line-height: 2;">
+                    1. customs — <select class="answer-select" data-correct="таможня">
+                        <option value="">...</option>
+                        <option value="виза">виза</option>
+                        <option value="таможня">таможня</option>
+                        <option value="впервые">впервые</option>
+                    </select><br>
+                    2. visa — <select class="answer-select" data-correct="виза">
+                        <option value="">...</option>
+                        <option value="виза">виза</option>
+                        <option value="таможня">таможня</option>
+                        <option value="впервые">впервые</option>
+                    </select><br>
+                    3. first time — <select class="answer-select" data-correct="впервые">
+                        <option value="">...</option>
+                        <option value="виза">виза</option>
+                        <option value="таможня">таможня</option>
+                        <option value="впервые">впервые</option>
+                    </select><br>
+                    4. business trip — <select class="answer-select" data-correct="командировка">
+                        <option value="">...</option>
+                        <option value="турист">турист</option>
+                        <option value="командировка">командировка</option>
+                        <option value="цель визита">цель визита</option>
+                    </select><br>
+                    5. purpose of visit — <select class="answer-select" data-correct="цель визита">
+                        <option value="">...</option>
+                        <option value="турист">турист</option>
+                        <option value="командировка">командировка</option>
+                        <option value="цель визита">цель визита</option>
+                    </select><br>
+                </div>
+                <button class="btn" onclick="checkPassportVocab()">Check</button>
+                <div class="feedback" id="passport-vocab-feedback"></div>
+            </div>
+
+            <div class="tips-box">
+                <h4>💡 Tips for Passport Control</h4>
+                <ul>
+                    <li>Keep your passport and boarding pass at hand</li>
+                    <li>Answer with short sentences: "Business" or "Tourism" is enough</li>
+                    <li>If you don't understand: "Sorry, could you repeat that, please?"</li>
+                    <li>Bali allows visa-free entry for many countries for 30 days / visa on arrival</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MATCH GAME -->
+        <div class="section" id="game">
+            <div class="section-header">
+                <span class="section-icon">🎮</span>
+                <h2 class="section-title">Matching Game: Airport Vocabulary</h2>
+                <span class="section-time">⏱ 4 min</span>
+            </div>
+
+            <div class="instruction">
+                Click an English word, then click its Russian translation. Match all pairs to win! ⏱ Try to beat the clock!
+            </div>
+
+            <div class="timer"><strong id="game-timer">0:30</strong> seconds left</div>
+            <div class="game-hint" id="game-status" style="color: #1a2980; font-weight: 500;">Match all 8 pairs!</div>
+
+            <div class="game-area">
+                <div class="game-column">
+                    <div class="game-column-title">🇬🇧 English</div>
+                    <div id="english-column"></div>
+                </div>
+                <div class="game-column">
+                    <div class="game-column-title">🇷🇺 Russian</div>
+                    <div id="russian-column"></div>
+                </div>
+            </div>
+
+            <div class="game-results" id="game-results" style="display: none;">
+                <div class="game-emoji" id="game-emoji">🎉</div>
+                <div class="game-score" id="game-score-text">Great job!</div>
+                <button class="btn" onclick="restartGame()">🔄 Play Again</button>
+            </div>
+
+            <button class="btn" onclick="startGame()" id="game-start-btn">▶️ Start Game</button>
+        </div>
+
+        <!-- HOMEWORK -->
+        <div class="section" id="homework">
+            <div class="section-header">
+                <span class="section-icon">📝</span>
+                <h2 class="section-title">Homework (30 min)</h2>
+                <span class="section-time">⏱ After lesson</span>
+            </div>
+
+            <div class="homework-box">
+                <h4>✅ Tasks to Complete</h4>
+
+                <div class="homework-item">
+                    <input type="checkbox">
+                    <div>
+                        <strong>1. Grammar: Fill the gaps</strong>
+                        <p>1. Passengers ________ (can / can't) use their phones during takeoff.</p>
+                        <p>2. The flight to Bangkok ________ (depart) at 8 AM.</p>
+                        <p>3. You ________ (can / can't) check in online — it's faster.</p>
+                        <p>4. Boarding ________ (start) 30 minutes before the flight.</p>
+                        <p>5. Smokers ________ (can / can't) smoke in the terminal.</p>
+                    </div>
+                </div>
+
+                <div class="homework-item">
+                    <input type="checkbox">
+                    <div>
+                        <strong>2. Translate into English</strong>
+                        <p>1. Я могу зарегистрироваться онлайн.</p>
+                        <p>2. Рейс задерживается на два часа.</p>
+                        <p>3. Где мой выход на посадку?</p>
+                        <p>4. Ручная кладь должна быть меньше 10 кг.</p>
+                        <p>5. Посадка начнётся через 15 минут.</p>
+                    </div>
+                </div>
+
+                <div class="homework-item">
+                    <input type="checkbox">
+                    <div>
+                        <strong>3. Writing: Describe your last airport visit</strong>
+                        <p>Write 5-7 sentences: When was your last flight? What did you do at the airport? Was there a delay?</p>
+                        <p><em>Example start: "Last month I went to the airport early. I checked in online..."</em></p>
+                    </div>
+                </div>
+
+                <div class="homework-item">
+                    <input type="checkbox">
+                    <div>
+                        <strong>4. Real-life practice</strong>
+                        <p>Find "airport announcement" video on YouTube. Listen and write 3 phrases you understood. Watch the suggested video and note 3 new words.</p>
+                    </div>
+                </div>
+
+                <div class="homework-item">
+                    <input type="checkbox">
+                    <div>
+                        <strong>5. Flashcards</strong>
+                        <p>Review the vocabulary. Cover the English side and try to say the word from Russian translation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h4>📌 How to Check Homework Next Lesson</h4>
+                <ul>
+                    <li>Student reads their airport story out loud</li>
+                    <li>Teacher corrects 3-5 key mistakes (not all!)</li>
+                    <li>Student explains 3 phrases they understood from the video</li>
+                    <li>Quick vocabulary quiz: teachers says Russian, student says English</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>✈️ Travel English — Lesson 1: At the Airport</p>
+        <p>Level A2 | Present Simple + can/can't</p>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Option buttons
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const question = this.closest('.question-box');
+                question.querySelectorAll('.option-btn').forEach(b => {
+                    b.classList.remove('selected');
+                    b.classList.remove('correct');
+                    b.classList.remove('incorrect');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Exercise 1: can / can't
+        function checkCan() {
+            const questions = document.querySelectorAll('#grammar .question-box');
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach(q => {
+                const selected = q.querySelector('.option-btn.selected');
+                if (!selected) return;
+                answered++;
+
+                const questionText = q.querySelector('p').textContent.toLowerCase();
+                const wantsAffirmative = /Можно|Можете|Мог/i.test(q.querySelector('p').textContent);
+
+                const isCorrect = selected.dataset.answer === (wantsAffirmative ? 'Can' : 'cant') ||
+                                 selected.dataset.answer === (wantsAffirmative ? 'can' : 'cant');
+
+                if (isCorrect) {
+                    correct++;
+                    selected.classList.add('correct');
+                } else {
+                    selected.classList.add('incorrect');
+                    q.querySelectorAll('.option-btn').forEach(b => {
+                        if (b.dataset.answer === (wantsAffirmative ? 'Can' : 'cant') || b.dataset.answer === (wantsAffirmative ? 'can' : 'cant')) {
+                            b.classList.add('correct');
+                        }
+                    });
+                }
+            });
+
+            const feedback = document.getElementById('can-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === 5 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === 5 ? '🎉 Perfect!' : '📝 Results: ' + correct + '/5'}</h4>` +
+                `<p>${correct === 5 ? 'You understand can/can\'t perfectly!' : 'Check the correct answers highlighted in green and review the rules.'}</p>`;
+        }
+
+        // Exercise 2: Translation
+        function checkTranslate() {
+            const inputs = document.querySelectorAll('#grammar .text-answer');
+            let correct = 0;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.correct.toLowerCase().replace(/\s+/g, ' ');
+
+                if (userAnswer.replace(/\s+/g, ' ') === correctAnswer || userAnswer.replace(/\s+/g, '') === correctAnswer.replace(/\s+/g, '')) {
+                    correct++;
+                    input.style.borderColor = '#27ae60';
+                    input.style.backgroundColor = '#d4edda';
+                } else {
+                    input.style.borderColor = '#e74c3c';
+                    input.style.backgroundColor = '#f8d7da';
+                    input.value = input.value + ' → ' + input.dataset.correct;
+                }
+            });
+
+            const feedback = document.getElementById('translate-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === 5 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === 5 ? '🎉 Excellent!' : '📝 Results: ' + correct + '/5'}</h4>` +
+                `<p>${correct === 5 ? 'Great translations! Practice them out loud at home.' : 'The correct answers are shown after your attempts.'}</p>`;
+        }
+
+        // ===== BUILD THE SENTENCE =====
+        function refreshPunct(area) {
+            let punct = area.querySelector('.sentence-punct');
+            if (!punct) {
+                punct = document.createElement('span');
+                punct.className = 'sentence-punct';
+                area.appendChild(punct);
+            }
+            const hasWords = area.querySelectorAll('.word-chip').length > 0;
+            punct.textContent = hasWords ? (area.dataset.punct || '') : '';
+            area.appendChild(punct);
+        }
+
+        document.querySelectorAll('#grammar .sentence-bank').forEach(bank => {
+            const box = bank.closest('.question-box');
+            const area = box.querySelector('.sentence-answer');
+
+            const chips = shuffleArray([...bank.children]);
+            chips.forEach(chip => bank.appendChild(chip));
+
+            bank.addEventListener('click', e => {
+                const chip = e.target.closest('.word-chip');
+                if (!chip || !bank.contains(chip)) return;
+                area.appendChild(chip);
+                chip.classList.add('in-answer');
+                refreshPunct(area);
+            });
+
+            area.addEventListener('click', e => {
+                const chip = e.target.closest('.word-chip');
+                if (!chip) return;
+                bank.appendChild(chip);
+                chip.classList.remove('in-answer');
+                refreshPunct(area);
+            });
+        });
+
+        function restoreAnswerArea(area) {
+            area.style.borderColor = '';
+            area.style.backgroundColor = '';
+            const sol = area.querySelector('.solution-text');
+            if (sol) sol.remove();
+            const bank = area.closest('.question-box').querySelector('.sentence-bank');
+            area.querySelectorAll('.word-chip').forEach(chip => {
+                chip.classList.remove('in-answer');
+                bank.appendChild(chip);
+            });
+            refreshPunct(area);
+        }
+
+        function checkBuild() {
+            const areas = document.querySelectorAll('#grammar .sentence-answer');
+            const total = areas.length;
+            let correct = 0;
+
+            areas.forEach(area => {
+                const chosen = [...area.querySelectorAll('.word-chip')]
+                    .map(c => c.textContent.trim())
+                    .join(' ')
+                    .toLowerCase();
+                const expected = area.dataset.correct.trim().toLowerCase();
+                restoreAnswerArea(area);
+
+                if (chosen === expected) {
+                    correct++;
+                    area.style.borderColor = '#27ae60';
+                    area.style.backgroundColor = '#d4edda';
+                } else {
+                    area.style.borderColor = '#e74c3c';
+                    area.style.backgroundColor = '#f8d7da';
+                    const sol = document.createElement('div');
+                    sol.className = 'solution-text';
+                    sol.textContent = '➜ ' + area.dataset.correct + (area.dataset.punct || '');
+                    area.appendChild(sol);
+                }
+            });
+
+            const feedback = document.getElementById('build-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === total ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === total ? '🎉 Perfect sentences!' : '📝 Results: ' + correct + '/' + total}</h4>` +
+                `<p>${correct === total ? 'You built all the sentences correctly!' : 'The correct sentences are shown after your attempts. Rebuild them and check again.'}</p>`;
+        }
+
+        // Vocabulary Match
+        function checkVocabMatch() {
+            const selects = document.querySelectorAll('#vocab .answer-select');
+            let correct = 0;
+
+            selects.forEach(select => {
+                if (select.value === select.dataset.correct) {
+                    correct++;
+                    select.style.borderColor = '#27ae60';
+                    select.style.backgroundColor = '#d4edda';
+                } else {
+                    select.style.borderColor = '#e74c3c';
+                    select.style.backgroundColor = '#f8d7da';
+                }
+            });
+
+            const feedback = document.getElementById('vocab-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === 4 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === 4 ? '🎉 Great vocabulary!' : '📝 Results: ' + correct + '/4'}</h4>`;
+        }
+
+        // Passport control
+        function checkPassport() {
+            const questions = document.querySelectorAll('#passport .passport-q');
+            let correct = 0;
+
+            questions.forEach(q => {
+                const selected = q.querySelector('.option-btn.selected');
+                if (!selected) return;
+
+                if (selected.textContent.trim() === q.dataset.correct) {
+                    correct++;
+                    selected.classList.add('correct');
+                } else {
+                    selected.classList.add('incorrect');
+                    q.querySelectorAll('.option-btn').forEach(b => {
+                        if (b.textContent.trim() === q.dataset.correct) {
+                            b.classList.add('correct');
+                        }
+                    });
+                }
+            });
+
+            const feedback = document.getElementById('passport-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === questions.length ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === questions.length ? '🎉 Great job!' : '📝 Results: ' + correct + '/' + questions.length}</h4>` +
+                `<p>${correct === questions.length ? 'You know what to answer at passport control!' : 'The correct answers are highlighted in green. Practice them out loud!'}</p>`;
+        }
+
+        function checkPassportVocab() {
+            const selects = document.querySelectorAll('#passport .answer-select');
+            let correct = 0;
+
+            selects.forEach(select => {
+                if (select.value === select.dataset.correct) {
+                    correct++;
+                    select.style.borderColor = '#27ae60';
+                    select.style.backgroundColor = '#d4edda';
+                } else {
+                    select.style.borderColor = '#e74c3c';
+                    select.style.backgroundColor = '#f8d7da';
+                }
+            });
+
+            const feedback = document.getElementById('passport-vocab-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct === 5 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === 5 ? '🎉 Perfect!' : '📝 Results: ' + correct + '/5'}</h4>`;
+        }
+
+        // Reading Aloud for announcements
+        let announcementTimers = [];
+
+        function playAnnouncement() {
+            if (announcementTimers.length) {
+                return;
+            }
+
+            const text1 = "Good afternoon, passengers of flight J L four fifty one to Tokyo. Boarding will begin in fifteen minutes. Please proceed to gate A twelve. Please have your boarding pass and passport ready.";
+            const text2 = "Attention, passengers of flight J L four fifty one to Tokyo. The flight has been delayed. The new departure time is three thirty P M. We apologize for the inconvenience. Please stay near gate A twelve.";
+            const text3 = "Final call for flight J L four fifty one to Tokyo. Passengers, final boarding call. Please go to gate A twelve immediately. The gate will close in five minutes.";
+
+            if ('speechSynthesis' in window) {
+                const voices = speechSynthesis.getVoices();
+                const englishVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB') || null;
+
+                [text1, text2, text3].forEach((text, i) => {
+                    const timer = setTimeout(() => {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        if (englishVoice) utterance.voice = englishVoice;
+                        utterance.lang = 'en-US';
+                        utterance.rate = 0.75;
+                        speechSynthesis.speak(utterance);
+                    }, i * 20000);
+                    announcementTimers.push(timer);
+                });
+
+                setTimeout(() => {
+                    announcementTimers = [];
+                }, 40000);
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+        }
+
+        // Comprehension check
+        function checkComprehension() {
+            const inputs = document.querySelectorAll('#listening .text-answer');
+            let correct = 0;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.correct.toLowerCase();
+
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                    input.style.borderColor = '#27ae60';
+                    input.style.backgroundColor = '#d4edda';
+                } else {
+                    input.style.borderColor = '#e74c3c';
+                    input.style.backgroundColor = '#f8d7da';
+                    input.value = input.value + ' → ' + input.dataset.correct;
+                }
+            });
+
+            const feedback = document.getElementById('comprehension-feedback');
+            feedback.classList.add('show');
+            feedback.className = `feedback show ${correct >= 4 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct >= 4 ? '👍 Good listening!' : '📝 Results: ' + correct + '/6'}</h4>` +
+                `<p>${correct >= 4 ? 'You understood the announcements well!' : 'Listen again to the announcements and try again.'}</p>`;
+        }
+
+        // ===== MATCHING GAME =====
+        const gamePairs = [
+            { en: 'boarding pass', ru: 'посадочный талон' },
+            { en: 'carry-on bag', ru: 'ручная кладь' },
+            { en: 'security check', ru: 'контроль безопасности' },
+            { en: 'luggage', ru: 'багаж' },
+            { en: 'departure', ru: 'вылет' },
+            { en: 'arrival', ru: 'прилёт' },
+            { en: 'gate', ru: 'выход на посадку' },
+            { en: 'delay', ru: 'задержка' }
+        ];
+
+        let selectedCard = null;
+        let matchedPairs = 0;
+        let gameTimer;
+        let timeLeft = 30;
+        let errors = 0;
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function startGame() {
+            matchedPairs = 0;
+            selectedCard = null;
+            errors = 0;
+            timeLeft = 30;
+
+            const startBtn = document.getElementById('game-start-btn');
+            startBtn.style.display = 'none';
+            document.getElementById('game-results').style.display = 'none';
+            document.getElementById('game-status').textContent = 'Match all 8 pairs!';
+            document.getElementById('game-status').style.color = '#1a2980';
+
+            const englishColumn = document.getElementById('english-column');
+            const russianColumn = document.getElementById('russian-column');
+            englishColumn.innerHTML = '';
+            russianColumn.innerHTML = '';
+
+            const shuffledEn = shuffleArray([...gamePairs]);
+            const shuffledRu = shuffleArray([...gamePairs]);
+
+            shuffledEn.forEach(pair => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.dataset.pairId = gamePairs.indexOf(pair);
+                card.textContent = pair.en;
+                card.addEventListener('click', () => handleCardClick(card, 'en'));
+                englishColumn.appendChild(card);
+            });
+
+            shuffledRu.forEach(pair => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.dataset.pairId = gamePairs.indexOf(pair);
+                card.textContent = pair.ru;
+                card.addEventListener('click', () => handleCardClick(card, 'ru'));
+                russianColumn.appendChild(card);
+            });
+
+            gameTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('game-timer').textContent = `0:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+                if (timeLeft <= 0) {
+                    clearInterval(gameTimer);
+                    if (matchedPairs < gamePairs.length) {
+                        endGame(false);
+                    }
+                }
+            }, 1000);
+        }
+
+        function handleCardClick(card, type) {
+            if (card.classList.contains('matched')) return;
+
+            if (selectedCard === null) {
+                // First selection — highlight
+                document.querySelectorAll('.match-card.selected').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCard = { card, type };
+                return;
+            }
+
+            // Second selection
+            if (selectedCard.type === type) {
+                // Clicked same column — switch selection
+                document.querySelectorAll('.match-card.selected').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCard = { card, type };
+                return;
+            }
+
+            // Different columns — check match
+            if (selectedCard.card.dataset.pairId === card.dataset.pairId) {
+                // Correct match!
+                selectedCard.card.classList.remove('selected');
+                selectedCard.card.classList.add('matched');
+                card.classList.add('matched');
+                matchedPairs++;
+                document.getElementById('game-status').textContent = `✅ ${matchedPairs} of ${gamePairs.length} pairs matched!`;
+
+                if (matchedPairs === gamePairs.length) {
+                    clearInterval(gameTimer);
+                    endGame(true);
+                }
+            } else {
+                // Wrong match — show error
+                errors++;
+                card.classList.add('error');
+                selectedCard.card.classList.remove('selected');
+                selectedCard.card.classList.add('error');
+
+                const wrongCard1 = card;
+                const wrongCard2 = selectedCard.card;
+                setTimeout(() => {
+                    wrongCard1.classList.remove('error');
+                    wrongCard2.classList.remove('error');
+                }, 500);
+            }
+
+            selectedCard = null;
+        }
+
+        function endGame(win) {
+            const results = document.getElementById('game-results');
+            const emoji = document.getElementById('game-emoji');
+            const scoreText = document.getElementById('game-score-text');
+            const startBtn = document.getElementById('game-start-btn');
+
+            results.style.display = 'block';
+
+            if (win) {
+                const timeUsed = 30 - timeLeft;
+                emoji.textContent = timeUsed <= 15 ? '🏆' : '🎉';
+                scoreText.textContent = `Perfect! All ${gamePairs.length} pairs in ${timeUsed} seconds!`;
+                scoreText.style.color = '#27ae60';
+                document.getElementById('game-status').textContent = '🎊 You won! Amazing!';
+                document.getElementById('game-status').style.color = '#27ae60';
+                startBtn.style.display = 'none';
+            } else {
+                emoji.textContent = '⏰';
+                scoreText.textContent = `Time's up! You matched ${matchedPairs} of ${gamePairs.length}. Try again!`;
+                scoreText.style.color = '#e74c3c';
+                document.getElementById('game-status').textContent = `Linked ${matchedPairs} pairs. Play again?`;
+                document.getElementById('game-status').style.color = '#e74c3c';
+                results.style.display = 'none';
+                startBtn.style.display = 'inline-block';
+                startBtn.textContent = '🔄 Try Again';
+            }
+        }
+
+        function restartGame() {
+            startGame();
+        }
+    </script>
+</body>
+</html>
