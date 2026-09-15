@@ -179,6 +179,26 @@
         .vocab-card p { color: #666; font-size: 0.9em; }
         .vocab-card .transcription { color: #26d0ce; font-size: 0.85em; font-style: italic; }
 
+        .vocab-card h5 { display: flex; align-items: center; gap: 8px; }
+        .vocab-speaker {
+            background: #26d0ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .vocab-speaker:hover { background: #1a2980; transform: scale(1.1); }
+        .vocab-card.clickable { cursor: pointer; }
+
         .options { display: flex; flex-wrap: wrap; gap: 10px; }
         .option-btn {
             background: white;
@@ -1579,6 +1599,41 @@
 
         // Reading Aloud for announcements
         let announcementTimers = [];
+
+        function speakWord(text) {
+            if (!('speechSynthesis' in window)) {
+                alert('Text-to-speech is not supported in your browser.');
+                return;
+            }
+            speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            const voices = speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB') || null;
+            if (englishVoice) utterance.voice = englishVoice;
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+
+        document.querySelectorAll('.vocab-card').forEach(card => {
+            const wordEl = card.querySelector('h5');
+            const word = wordEl.textContent.trim();
+
+            const speaker = document.createElement('button');
+            speaker.type = 'button';
+            speaker.className = 'vocab-speaker';
+            speaker.textContent = '🔊';
+            speaker.title = 'Listen to "' + word + '"';
+            speaker.setAttribute('aria-label', 'Play pronunciation of ' + word);
+            speaker.addEventListener('click', e => {
+                e.stopPropagation();
+                speakWord(word);
+            });
+
+            wordEl.appendChild(speaker);
+            card.classList.add('clickable');
+            card.addEventListener('click', () => speakWord(word));
+        });
 
         function playAnnouncement() {
             if (announcementTimers.length) {
