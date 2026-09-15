@@ -555,6 +555,33 @@
         }
         .memory-stats strong { color: #1a2980; }
 
+        .record-controls { display: flex; gap: 6px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+        .record-btn, .play-record-btn {
+            background: #f0f3ff;
+            border: 2px solid #1a2980;
+            color: #1a2980;
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .record-btn:hover, .play-record-btn:hover { background: #1a2980; color: #fff; }
+        .record-btn.recording { background: #e74c3c; border-color: #e74c3c; color: #fff; }
+        .save-record-btn {
+            background: #f0f3ff;
+            border: 2px solid #1a2980;
+            color: #1a2980;
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        .save-record-btn:hover { background: #1a2980; color: #fff; }
+
         @media (max-width: 768px) {
             header h1 { font-size: 1.8em; }
             .section { padding: 25px; }
@@ -709,6 +736,11 @@
                 </div>
             </div>
 
+            <div class="tips-box" style="background:#fff8e1;">
+                <h4>🎤 Record Your Voice</h4>
+                <p>Every word card has a <strong>🎤</strong> button. Tap it, say the word aloud, tap again to stop. Then listen to your recording with <strong>▶️</strong> and compare it with the 🔊 pronunciation. Use <strong>⬇️ Save</strong> to keep the recording on your device.</p>
+            </div>
+
             <div class="homework-box" style="background: #e8f4fd;">
                 <h4>🎯 Practice Exercise</h4>
                 <p>Match the word with its meaning:</p>
@@ -736,6 +768,54 @@
                         <option value="ручная кладь">ручная кладь</option>
                         <option value="посадочный талон">посадочный талон</option>
                         <option value="паспорт">паспорт</option>
+                    </select><br>
+                    5. check-in desk — <select class="answer-select" data-correct="стойка регистрации">
+                        <option value="">...</option>
+                        <option value="стойка регистрации">стойка регистрации</option>
+                        <option value="время посадки">время посадки</option>
+                        <option value="рейс">рейс</option>
+                    </select><br>
+                    6. boarding time — <select class="answer-select" data-correct="время посадки">
+                        <option value="">...</option>
+                        <option value="стойка регистрации">стойка регистрации</option>
+                        <option value="время посадки">время посадки</option>
+                        <option value="рейс">рейс</option>
+                    </select><br>
+                    7. departure — <select class="answer-select" data-correct="вылет">
+                        <option value="">...</option>
+                        <option value="вылет">вылет</option>
+                        <option value="прилёт">прилёт</option>
+                        <option value="досмотр">досмотр</option>
+                    </select><br>
+                    8. arrival — <select class="answer-select" data-correct="прилёт">
+                        <option value="">...</option>
+                        <option value="вылет">вылет</option>
+                        <option value="прилёт">прилёт</option>
+                        <option value="досмотр">досмотр</option>
+                    </select><br>
+                    9. security check — <select class="answer-select" data-correct="досмотр">
+                        <option value="">...</option>
+                        <option value="вылет">вылет</option>
+                        <option value="прилёт">прилёт</option>
+                        <option value="досмотр">досмотр</option>
+                    </select><br>
+                    10. luggage — <select class="answer-select" data-correct="багаж">
+                        <option value="">...</option>
+                        <option value="багаж">багаж</option>
+                        <option value="задержка">задержка</option>
+                        <option value="выход">выход</option>
+                    </select><br>
+                    11. passport — <select class="answer-select" data-correct="паспорт">
+                        <option value="">...</option>
+                        <option value="паспорт">паспорт</option>
+                        <option value="ручная кладь">ручная кладь</option>
+                        <option value="посадочный талон">посадочный талон</option>
+                    </select><br>
+                    12. flight — <select class="answer-select" data-correct="рейс">
+                        <option value="">...</option>
+                        <option value="стойка регистрации">стойка регистрации</option>
+                        <option value="рейс">рейс</option>
+                        <option value="время посадки">время посадки</option>
                     </select><br>
                 </div>
                 <button class="btn" onclick="checkVocabMatch()">Check</button>
@@ -1634,8 +1714,8 @@
 
             const feedback = document.getElementById('vocab-feedback');
             feedback.classList.add('show');
-            feedback.className = `feedback show ${correct === 4 ? 'correct' : 'incorrect'}`;
-            feedback.innerHTML = `<h4>${correct === 4 ? '🎉 Great vocabulary!' : '📝 Results: ' + correct + '/4'}</h4>`;
+            feedback.className = `feedback show ${correct === selects.length ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `<h4>${correct === selects.length ? '🎉 Great vocabulary!' : '📝 Results: ' + correct + '/' + selects.length}</h4>`;
         }
 
         // Passport control
@@ -1749,7 +1829,7 @@
         };
 
         document.querySelectorAll('.vocab-card').forEach(card => {
-            const wordKey = card.querySelector('h5').textContent.trim().toLowerCase();
+            const wordKey = card.querySelector('h5').childNodes[0].nodeValue.trim().toLowerCase();
             const emoji = vocabEmojis[wordKey];
             if (!emoji) return;
             const icon = document.createElement('div');
@@ -1757,6 +1837,96 @@
             icon.setAttribute('aria-hidden', 'true');
             icon.textContent = emoji;
             card.prepend(icon);
+        });
+
+        // ===== VOICE RECORDING =====
+        let activeRecorder = null;
+
+        document.querySelectorAll('.vocab-card').forEach(card => {
+            const word = card.querySelector('h5').childNodes[0].nodeValue.trim();
+            const controls = document.createElement('div');
+            controls.className = 'record-controls';
+
+            const recordBtn = document.createElement('button');
+            recordBtn.type = 'button';
+            recordBtn.className = 'record-btn';
+            recordBtn.textContent = '🎤 Record';
+            recordBtn.title = 'Record yourself saying "' + word + '"';
+
+            const playBtn = document.createElement('button');
+            playBtn.type = 'button';
+            playBtn.className = 'play-record-btn';
+            playBtn.textContent = '▶️ My voice';
+            playBtn.style.display = 'none';
+            playBtn.title = 'Listen to your recording';
+
+            const saveLink = document.createElement('a');
+            saveLink.className = 'save-record-btn';
+            saveLink.textContent = '⬇️ Save';
+            saveLink.style.display = 'none';
+            saveLink.download = word.replace(/[^a-z0-9]+/gi, '-') + '.webm';
+
+            const rec = { chunks: [], blobUrl: null, recorder: null, stream: null };
+
+            recordBtn.addEventListener('click', async e => {
+                e.stopPropagation();
+                if (rec.recorder && rec.recorder.state === 'recording') {
+                    rec.recorder.stop();
+                    return;
+                }
+                if (activeRecorder) {
+                    try { activeRecorder.stop(); } catch (err) {}
+                }
+                if (!navigator.mediaDevices || !window.MediaRecorder) {
+                    alert('Recording is not supported in this browser. Please use Chrome, Edge or Firefox.');
+                    return;
+                }
+                try {
+                    rec.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                } catch (err) {
+                    alert('Microphone was not allowed. Please allow the microphone in your browser settings.');
+                    return;
+                }
+                rec.recorder = new MediaRecorder(rec.stream);
+                activeRecorder = rec.recorder;
+                rec.chunks = [];
+                rec.recorder.ondataavailable = ev => {
+                    if (ev.data && ev.data.size) rec.chunks.push(ev.data);
+                };
+                rec.recorder.onstop = () => {
+                    if (rec.stream) rec.stream.getTracks().forEach(t => t.stop());
+                    activeRecorder = null;
+                    const type = (rec.recorder && rec.recorder.mimeType) || 'audio/webm';
+                    const blob = new Blob(rec.chunks, { type });
+                    if (rec.blobUrl) URL.revokeObjectURL(rec.blobUrl);
+                    rec.blobUrl = URL.createObjectURL(blob);
+                    playBtn.style.display = 'inline-block';
+                    saveLink.style.display = 'inline-flex';
+                    saveLink.href = rec.blobUrl;
+                    recordBtn.classList.remove('recording');
+                    recordBtn.textContent = '🎤 Record';
+                    recordBtn.title = 'Record yourself saying "' + word + '"';
+                };
+                rec.recorder.start();
+                recordBtn.classList.add('recording');
+                recordBtn.textContent = '⏹ Stop';
+                recordBtn.title = 'Stop recording';
+            });
+
+            playBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                if (rec.blobUrl) {
+                    const audio = new Audio(rec.blobUrl);
+                    audio.play();
+                }
+            });
+
+            saveLink.addEventListener('click', e => e.stopPropagation());
+
+            controls.appendChild(recordBtn);
+            controls.appendChild(playBtn);
+            controls.appendChild(saveLink);
+            card.appendChild(controls);
         });
 
         function playAnnouncement() {
