@@ -491,6 +491,70 @@
         .sentence-punct { font-weight: 700; font-size: 1.25em; color: #1a2980; }
         .solution-text { font-size: 1.05em; font-weight: 600; color: #e74c3c; }
 
+        .vocab-emoji { font-size: 34px; margin-bottom: 8px; }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 480px;
+            margin: 20px auto;
+        }
+        .memory-card {
+            position: relative;
+            aspect-ratio: 1 / 1.15;
+            border-radius: 12px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .memory-card.flipped { transform: rotateY(180deg); }
+        .memory-card .back, .memory-card .front {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .memory-card .back {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: #fff;
+            font-size: 26px;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        .memory-card .front {
+            transform: rotateY(180deg);
+            background: #fff;
+            border: 2px solid #e3e8f0;
+        }
+        .memory-card .front .pic { font-size: 48px; }
+        .memory-card .front .wrd {
+            font-weight: 600;
+            color: #1a2980;
+            font-size: 1em;
+            text-align: center;
+            padding: 6px;
+            line-height: 1.2;
+        }
+        .memory-card.matched .front { background: #d4edda; border-color: #27ae60; }
+        .memory-card.matched { cursor: default; }
+        .memory-stats {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 15px 0 0;
+            color: #555;
+            font-size: 1em;
+        }
+        .memory-stats strong { color: #1a2980; }
+
         @media (max-width: 768px) {
             header h1 { font-size: 1.8em; }
             .section { padding: 25px; }
@@ -525,6 +589,7 @@
             <button class="tab" data-tab="speaking">💬 Speaking</button>
             <button class="tab" data-tab="passport">🛂 Passport Control</button>
             <button class="tab" data-tab="game">🎮 Match Game</button>
+            <button class="tab" data-tab="memory">🧠 Memory Game</button>
             <button class="tab" data-tab="homework">📝 Homework</button>
         </div>
 
@@ -1275,6 +1340,32 @@
             <button class="btn" onclick="startGame()" id="game-start-btn">▶️ Start Game</button>
         </div>
 
+        <!-- MEMORY GAME -->
+        <div class="section" id="memory">
+            <div class="section-header">
+                <span class="section-icon">🧠</span>
+                <h2 class="section-title">Memory Game: Match Words &amp; Pictures</h2>
+                <span class="section-time">⏱ 5 min</span>
+            </div>
+
+            <div class="instruction">
+                Flip two cards: one English word and one picture. If they match, they stay open. Find all 8 pairs!
+            </div>
+
+            <div class="memory-stats">
+                <span>Moves: <strong id="memory-moves">0</strong></span>
+                <span>Time: <strong id="memory-time">0:00</strong></span>
+            </div>
+
+            <div class="game-hint" id="memory-status" style="color: #1a2980; font-weight: 500; text-align: center;">Find all pairs to win!</div>
+
+            <div class="memory-grid" id="memory-board"></div>
+
+            <div style="text-align: center; margin-top: 8px;">
+                <button class="btn" onclick="buildMemoryGame()">🔄 New Game</button>
+            </div>
+        </div>
+
         <!-- HOMEWORK -->
         <div class="section" id="homework">
             <div class="section-header">
@@ -1635,6 +1726,39 @@
             card.addEventListener('click', () => speakWord(word));
         });
 
+        const vocabEmojis = {
+            'boarding pass': '🎫',
+            'check-in desk': '💻',
+            'gate': '🚪',
+            'boarding time': '⏰',
+            'departure': '🛫',
+            'arrival': '🛬',
+            'carry-on bag': '🎒',
+            'security check': '🔍',
+            'luggage / baggage': '🧳',
+            'passport': '🛂',
+            'flight': '✈️',
+            'delay': '⏳',
+            'immigration officer': '👮',
+            'purpose of visit': '❓',
+            'business trip': '💼',
+            'tourist': '🏖️',
+            'visa': '🪪',
+            'customs': '🛃',
+            'first time': '✨'
+        };
+
+        document.querySelectorAll('.vocab-card').forEach(card => {
+            const wordKey = card.querySelector('h5').textContent.trim().toLowerCase();
+            const emoji = vocabEmojis[wordKey];
+            if (!emoji) return;
+            const icon = document.createElement('div');
+            icon.className = 'vocab-emoji';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = emoji;
+            card.prepend(icon);
+        });
+
         function playAnnouncement() {
             if (announcementTimers.length) {
                 return;
@@ -1852,6 +1976,121 @@
         function restartGame() {
             startGame();
         }
+
+        // ===== MEMORY GAME =====
+        const memoryPicks = [
+            { en: 'boarding pass', emoji: '🎫' },
+            { en: 'carry-on bag', emoji: '🎒' },
+            { en: 'luggage', emoji: '🧳' },
+            { en: 'security check', emoji: '🔍' },
+            { en: 'passport', emoji: '🛂' },
+            { en: 'flight', emoji: '✈️' },
+            { en: 'gate', emoji: '🚪' },
+            { en: 'delay', emoji: '⏳' }
+        ];
+
+        let memTimer = null;
+        let memMoves = 0;
+        let memMatched = 0;
+        let memSeconds = 0;
+        let memFirst = null;
+        let memLock = false;
+
+        const memTotal = memoryPicks.length;
+
+        function buildMemoryGame() {
+            const board = document.getElementById('memory-board');
+            board.innerHTML = '';
+
+            memMoves = 0;
+            memMatched = 0;
+            memSeconds = 0;
+            memFirst = null;
+            memLock = false;
+
+            const cards = [];
+            memoryPicks.forEach((p, i) => {
+                cards.push({ type: 'wrd', pair: i, text: p.en });
+                cards.push({ type: 'pic', pair: i, emoji: p.emoji });
+            });
+            shuffleArray(cards).forEach(c => {
+                const el = document.createElement('div');
+                el.className = 'memory-card';
+                el.dataset.pair = c.pair;
+                el.dataset.type = c.type;
+
+                const front = c.type === 'pic'
+                    ? `<div class="front"><span class="pic">${c.emoji}</span></div>`
+                    : `<div class="front"><span class="wrd">${c.text}</span></div>`;
+                el.innerHTML = `<div class="back">?</div>` + front;
+                el.addEventListener('click', () => flipMemory(el));
+                board.appendChild(el);
+            });
+
+            clearInterval(memTimer);
+            memTimer = setInterval(() => {
+                memSeconds++;
+                updateMemoryStats();
+            }, 1000);
+
+            const status = document.getElementById('memory-status');
+            status.textContent = 'Match words and pictures!';
+            status.style.color = '#1a2980';
+            updateMemoryStats();
+        }
+
+        function flipMemory(el) {
+            if (memLock || el.classList.contains('flipped') || el.classList.contains('matched')) return;
+
+            el.classList.add('flipped');
+            if (el.dataset.type === 'wrd') {
+                speakWord(el.querySelector('.wrd').textContent.trim());
+            }
+
+            if (memFirst === null) {
+                memFirst = el;
+                return;
+            }
+
+            memMoves++;
+            updateMemoryStats();
+
+            if (memFirst.dataset.pair === el.dataset.pair && memFirst.dataset.type !== el.dataset.type) {
+                memFirst.classList.add('matched');
+                el.classList.add('matched');
+                memMatched++;
+                memFirst = null;
+
+                if (memMatched === memTotal) {
+                    clearInterval(memTimer);
+                    const status = document.getElementById('memory-status');
+                    status.textContent = `🎉 You won! All pairs found in ${memMoves} moves and ${formatMemTime(memSeconds)}!`;
+                    status.style.color = '#27ae60';
+                }
+            } else {
+                memLock = true;
+                const first = memFirst;
+                memFirst = null;
+                setTimeout(() => {
+                    first.classList.remove('flipped');
+                    el.classList.remove('flipped');
+                    memLock = false;
+                }, 700);
+            }
+        }
+
+        function formatMemTime(s) {
+            return Math.floor(s / 60) + ':' + (s % 60).toString().padStart(2, '0');
+        }
+
+        function updateMemoryStats() {
+            const moves = document.getElementById('memory-moves');
+            const time = document.getElementById('memory-time');
+            if (moves) moves.textContent = memMoves;
+            if (time) time.textContent = formatMemTime(memSeconds);
+        }
+
+        buildMemoryGame();
     </script>
 </body>
 </html>
