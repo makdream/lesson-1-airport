@@ -285,6 +285,21 @@
         }
         .audio-play-btn:hover { background: #2a3a90; }
 
+        .talk-btn {
+            border: none;
+            background: #26d0ce;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 15px;
+            margin-left: 8px;
+            vertical-align: middle;
+            transition: all 0.2s;
+        }
+        .talk-btn:hover { background: #1a2980; transform: scale(1.1); }
+
         .roleplay-box {
             background: linear-gradient(135deg, #e8f4fd 0%, #f0f3ff 100%);
             padding: 25px;
@@ -1029,12 +1044,12 @@
 
             <h3 style="color: #1a2980; margin: 20px 0 15px;">🔑 Key Phrases to Know First</h3>
             <div class="grammar-box">
-                <div class="example"><strong>Passengers of flight...</strong> — Пассажиры рейса...</div>
-                <div class="example"><strong>is now boarding</strong> — начинается посадка</div>
-                <div class="example"><strong>Please proceed to gate</strong> — пройдите к выходу</div>
-                <div class="example"><strong>The flight has been delayed</strong> — рейс задерживается</div>
-                <div class="example"><strong>Final call</strong> — последний призыв</div>
-                <div class="example"><strong>We apologize for the inconvenience</strong> — приносим извинения за неудобства</div>
+                <div class="example"><strong>Passengers of flight...</strong> — Пассажиры рейса... <button class="talk-btn" data-say="Passengers of flight">🔊</button></div>
+                <div class="example"><strong>is now boarding</strong> — начинается посадка <button class="talk-btn" data-say="is now boarding">🔊</button></div>
+                <div class="example"><strong>Please proceed to gate</strong> — пройдите к выходу <button class="talk-btn" data-say="Please proceed to gate">🔊</button></div>
+                <div class="example"><strong>The flight has been delayed</strong> — рейс задерживается <button class="talk-btn" data-say="The flight has been delayed">🔊</button></div>
+                <div class="example"><strong>Final call</strong> — последний призыв <button class="talk-btn" data-say="Final call">🔊</button></div>
+                <div class="example"><strong>We apologize for the inconvenience</strong> — приносим извинения за неудобства <button class="talk-btn" data-say="We apologize for the inconvenience">🔊</button></div>
             </div>
 
             <button class="audio-play-btn" onclick="playAnnouncement()">🔊 Play All Announcements</button>
@@ -1797,6 +1812,13 @@
             utterance.rate = 0.8;
             speechSynthesis.speak(utterance);
         }
+
+        document.querySelectorAll('.talk-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.getAttribute('data-say');
+                if (text) speakWord(text);
+            });
+        });
 
         document.querySelectorAll('.vocab-card').forEach(card => {
             const wordEl = card.querySelector('h5');
