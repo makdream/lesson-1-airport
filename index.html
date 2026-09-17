@@ -630,6 +630,7 @@
             <button class="tab" data-tab="vocab">📖 Vocabulary</button>
             <button class="tab" data-tab="grammar">📚 Grammar</button>
             <button class="tab" data-tab="listening">🎧 Listening</button>
+            <button class="tab" data-tab="checkin">💼 Check-in Desk</button>
             <button class="tab" data-tab="speaking">💬 Speaking</button>
             <button class="tab" data-tab="passport">🛂 Passport Control</button>
             <button class="tab" data-tab="game">🎮 Match Game</button>
@@ -1115,6 +1116,93 @@
                 <p>Search: <strong>"airport vocabulary English"</strong> or <strong>"Jennifer ESL travel English at the airport"</strong></p>
                 <p>Watch one video (5-10 min) and write down 3 new words you hear.</p>
                 <p style="color: #1a2980; font-weight: 500;">📌 Suggested: "Airport English — Check-In" by Rachel's English</p>
+            </div>
+        </div>
+
+        <!-- CHECK-IN LISTENING -->
+        <div class="section" id="checkin">
+            <div class="section-header">
+                <span class="section-icon">💼</span>
+                <h2 class="section-title">Listening: At the Check-in Desk</h2>
+                <span class="section-time">⏱ 8 min</span>
+            </div>
+
+            <div class="instruction">
+                Listen to the check-in dialogue. First time — try to understand the main idea. Second time — listen for details and answer the questions.
+                <div class="translation">Послушай диалог на стойке регистрации. Сначала — общий смысл, потом — детали. Затем ответь на вопросы.</div>
+            </div>
+
+            <h3 style="color: #1a2980; margin: 20px 0 15px;">🔑 Key Phrases</h3>
+            <div class="grammar-box">
+                <div class="example"><strong>Your passport, please.</strong> — Ваш паспорт, пожалуйста. <button class="talk-btn" data-say="Your passport, please.">🔊</button></div>
+                <div class="example"><strong>Where are you flying to?</strong> — Куда вы летите? <button class="talk-btn" data-say="Where are you flying to?">🔊</button></div>
+                <div class="example"><strong>Do you have any checked luggage?</strong> — Вы сдаёте багаж? <button class="talk-btn" data-say="Do you have any checked luggage?">🔊</button></div>
+                <div class="example"><strong>A window or an aisle seat?</strong> — Место у окна или у прохода? <button class="talk-btn" data-say="Would you like a window or an aisle seat?">🔊</button></div>
+                <div class="example"><strong>Here is your boarding pass.</strong> — Вот ваш посадочный талон. <button class="talk-btn" data-say="Here is your boarding pass.">🔊</button></div>
+                <div class="example"><strong>Boarding starts at 9:45 at gate C-5.</strong> — Посадка в 9:45 у выхода C-5. <button class="talk-btn" data-say="Boarding starts at nine forty five at gate C five.">🔊</button></div>
+            </div>
+
+            <button class="audio-play-btn" onclick="playCheckIn()">🎧 Play the Dialogue / Проиграть диалог</button>
+
+            <div class="roleplay-box" style="margin-top:20px;">
+                <span class="label">💼 Check-in Dialogue — Диалог на регистрации</span>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Good morning! Your passport, please. <span class="translation">(Доброе утро! Ваш паспорт, пожалуйста.)</span> <button class="talk-btn" data-say="Good morning! Your passport, please.">🔊</button></div>
+                <div class="dialogue-line dialogue-passenger"><span class="role">🧑 Passenger:</span> Good morning. Here you are. <span class="translation">(Доброе утро. Вот, пожалуйста.)</span> <button class="talk-btn" data-say="Good morning. Here you are.">🔊</button></div>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Where are you flying to? <span class="translation">(Куда вы летите?)</span> <button class="talk-btn" data-say="Where are you flying to?">🔊</button></div>
+                <div class="dialogue-line dialogue-passenger"><span class="role">🧑 Passenger:</span> To Tokyo. <span class="translation">(В Токио.)</span> <button class="talk-btn" data-say="To Tokyo.">🔊</button></div>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Do you have any checked luggage? <span class="translation">(Вы сдаёте багаж?)</span> <button class="talk-btn" data-say="Do you have any checked luggage?">🔊</button></div>
+                <div class="dialogue-line dialogue-passenger"><span class="role">🧑 Passenger:</span> Yes, one suitcase. <span class="translation">(Да, один чемодан.)</span> <button class="talk-btn" data-say="Yes, one suitcase.">🔊</button></div>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Would you like a window or an aisle seat? <span class="translation">(Место у окна или у прохода?)</span> <button class="talk-btn" data-say="Would you like a window or an aisle seat?">🔊</button></div>
+                <div class="dialogue-line dialogue-passenger"><span class="role">🧑 Passenger:</span> Window seat, please. <span class="translation">(У окна, пожалуйста.)</span> <button class="talk-btn" data-say="Window seat, please.">🔊</button></div>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Here is your boarding pass. Boarding starts at 9:45 at gate C-5. <span class="translation">(Ваш посадочный талон. Посадка в 9:45 у выхода C-5.)</span> <button class="talk-btn" data-say="Here is your boarding pass. Boarding starts at nine forty five at gate C five.">🔊</button></div>
+                <div class="dialogue-line dialogue-passenger"><span class="role">🧑 Passenger:</span> Can I take my carry-on bag with me? <span class="translation">(Можно ручную кладь с собой?)</span> <button class="talk-btn" data-say="Can I take my carry-on bag with me?">🔊</button></div>
+                <div class="dialogue-line dialogue-agent"><span class="role">👨‍✈️ Agent:</span> Yes, of course. Have a nice flight! <span class="translation">(Да, конечно. Приятного полёта!)</span> <button class="talk-btn" data-say="Yes, of course. Have a nice flight!">🔊</button></div>
+            </div>
+
+            <div class="homework-box" style="background: #f8f9fa;">
+                <h4 style="color: #1a2980;">❓ Comprehension Questions — Вопросы на понимание</h4>
+                <div class="question-box cc-q">
+                    <p>1. Where is the passenger flying? <span class="translation">Куда летит пассажир?</span></p>
+                    <div class="options">
+                        <button class="option-btn" data-correct="true">To Tokyo</button>
+                        <button class="option-btn">To Bali</button>
+                        <button class="option-btn">To Jakarta</button>
+                    </div>
+                </div>
+                <div class="question-box cc-q">
+                    <p>2. What does the passenger give to the agent? <span class="translation">Что пассажир передаёт агенту?</span></p>
+                    <div class="options">
+                        <button class="option-btn">Boarding pass</button>
+                        <button class="option-btn" data-correct="true">Passport</button>
+                        <button class="option-btn">Luggage</button>
+                    </div>
+                </div>
+                <div class="question-box cc-q">
+                    <p>3. How many suitcases does the passenger have? <span class="translation">Сколько чемоданов у пассажира?</span></p>
+                    <div class="options">
+                        <button class="option-btn">Two</button>
+                        <button class="option-btn" data-correct="true">One</button>
+                        <button class="option-btn">Three</button>
+                    </div>
+                </div>
+                <div class="question-box cc-q">
+                    <p>4. Which seat does the passenger choose? <span class="translation">Какое место выбирает пассажир?</span></p>
+                    <div class="options">
+                        <button class="option-btn">Aisle seat</button>
+                        <button class="option-btn" data-correct="true">Window seat</button>
+                        <button class="option-btn">Middle seat</button>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <p>5. What time does boarding start? <span class="translation">Во сколько начинается посадка?</span></p>
+                    <input type="text" class="text-answer cc-input" data-correct="9:45" placeholder="Type your answer...">
+                </div>
+                <div class="question-box">
+                    <p>6. Which gate does the passenger go to? <span class="translation">К какому выходу идти пассажиру?</span></p>
+                    <input type="text" class="text-answer cc-input" data-correct="C-5" placeholder="Type your answer...">
+                </div>
+                <button class="btn" onclick="checkCheckIn()">Check Answers</button>
+                <div class="feedback" id="checkin-feedback"></div>
             </div>
         </div>
 
@@ -2040,6 +2128,79 @@
             feedback.className = `feedback show ${correct >= 4 ? 'correct' : 'incorrect'}`;
             feedback.innerHTML = `<h4>${correct >= 4 ? '👍 Good listening!' : '📝 Results: ' + correct + '/6'}</h4>` +
                 `<p>${correct >= 4 ? 'You understood the announcements well!' : 'Listen again to the announcements and try again.'}</p>`;
+        }
+
+        // ===== CHECK-IN LISTENING =====
+        let checkInTimers = [];
+        function playCheckIn() {
+            if (checkInTimers.length) return;
+            const lines = [
+                "Good morning! Your passport, please.",
+                "Good morning. Here you are.",
+                "Where are you flying to?",
+                "To Tokyo.",
+                "Do you have any checked luggage?",
+                "Yes, one suitcase.",
+                "Would you like a window or an aisle seat?",
+                "Window seat, please.",
+                "Here is your boarding pass. Boarding starts at nine forty five at gate C five.",
+                "Can I take my carry-on bag with me?",
+                "Yes, of course. Have a nice flight!"
+            ];
+            if ('speechSynthesis' in window) {
+                const voices = speechSynthesis.getVoices();
+                const englishVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB') || null;
+                lines.forEach((text, i) => {
+                    const timer = setTimeout(() => {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        if (englishVoice) utterance.voice = englishVoice;
+                        utterance.lang = 'en-US';
+                        utterance.rate = 0.8;
+                        speechSynthesis.speak(utterance);
+                    }, i * 6000);
+                    checkInTimers.push(timer);
+                });
+                setTimeout(() => { checkInTimers = []; }, lines.length * 6000 + 2000);
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+        }
+
+        function checkCheckIn() {
+            const mcq = document.querySelectorAll('#checkin .cc-q');
+            let correct = 0;
+            mcq.forEach(box => {
+                const sel = box.querySelector('.option-btn.selected');
+                if (!sel) return;
+                if (sel.dataset.correct) {
+                    correct++;
+                    sel.classList.add('correct');
+                } else {
+                    sel.classList.add('incorrect');
+                    const good = box.querySelector('.option-btn[data-correct]');
+                    if (good) good.classList.add('correct');
+                }
+            });
+            const inputs = document.querySelectorAll('#checkin .cc-input');
+            const total = mcq.length + inputs.length;
+            inputs.forEach(input => {
+                const user = input.value.trim().toLowerCase();
+                const exp = input.dataset.correct.toLowerCase();
+                if (user === exp) {
+                    correct++;
+                    input.style.borderColor = '#27ae60';
+                    input.style.backgroundColor = '#d4edda';
+                } else {
+                    input.style.borderColor = '#e74c3c';
+                    input.style.backgroundColor = '#f8d7da';
+                    input.value = input.value + ' → ' + input.dataset.correct;
+                }
+            });
+            const fb = document.getElementById('checkin-feedback');
+            fb.classList.add('show');
+            fb.className = `feedback show ${correct === total ? 'correct' : 'incorrect'}`;
+            fb.innerHTML = `<h4>${correct === total ? '🎉 Perfect! / Отлично!' : '📝 Результат: ' + correct + '/' + total}</h4>` +
+                `<p>${correct === total ? 'You understood the check-in dialogue!' : 'Послушай диалог ещё раз и попробуй снова.'}</p>`;
         }
 
         // ===== MATCHING GAME =====
